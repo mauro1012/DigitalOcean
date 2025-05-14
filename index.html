@@ -2,11 +2,40 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Hola DigitalOcean</title>
+    <title>Cuenta Regresiva de Cumpleaños</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>¡Hola DigitalOcean desde una página estática!</h1>
-    <p>Este es un ejemplo básico de despliegue estático.</p>
+    <div class="container">
+        <h1>¿Cuántos días faltan para tu cumpleaños?</h1>
+        <input type="date" id="birthdayInput">
+        <button onclick="calculateDays()">Calcular</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+    function calculateDays() {
+        const input = document.getElementById("birthdayInput").value;
+        if (!input) {
+            document.getElementById("result").innerText = "Por favor, selecciona una fecha.";
+            return;
+        }
+
+        const today = new Date();
+        const currentYear = today.getFullYear();
+        let birthday = new Date(input);
+        birthday.setFullYear(currentYear);
+
+        if (birthday < today) {
+            birthday.setFullYear(currentYear + 1);
+        }
+
+        const diffTime = birthday - today;
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+        document.getElementById("result").innerText = 
+            `Faltan ${diffDays} día(s) para tu cumpleaños 🎉`;
+    }
+    </script>
 </body>
 </html>
