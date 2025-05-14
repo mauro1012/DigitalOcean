@@ -1,3 +1,3 @@
-# Hello DO App
+# Hello DigitalOcean
 
-Pequeña aplicación Flask para ser desplegada en DigitalOcean App Platform.
+Aplicación Flask simple para desplegar en DigitalOcean App Platform.
