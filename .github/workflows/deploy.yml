@@ -1,0 +1,23 @@
+name: CI/CD - Página Estática en DigitalOcean App Platform
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  redeploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout del código
+        uses: actions/checkout@v3
+
+      - name: 🚀 Instalar doctl y autenticar
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+
+      - name: 🔁 Forzar redeploy en App Platform
+        run: |
+          doctl apps redeploy ${{ secrets.DIGITALOCEAN_APP_ID }}
